@@ -2,8 +2,8 @@ name: Terraform Plan
 
 on:
   pull_request:
-    branches: [ main ]
-
+    branches:
+      - main
 jobs:
   terraform:
     runs-on: ubuntu-latest
