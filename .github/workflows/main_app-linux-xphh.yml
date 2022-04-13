@@ -23,6 +23,7 @@ jobs:
         node-version: 13.x
     
     - name: Install NPM packages
+      working-directory: ./static-app
       run: npm ci
     
     - name: Build project
