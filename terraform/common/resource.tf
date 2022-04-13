@@ -3,12 +3,12 @@ resource "azurerm_resource_group" "react-rg" {
   location = local.location
 }
 
-# resource "azurerm_static_site" "static-app" {
-#   name = "web-${local.name}-np-${local.location}"
-#   resource_group_name = azurerm_resource_group.react-rg.name
-#   location = local.location
-#   tags = local.common_tags
-# }
+resource "azurerm_static_site" "static-app" {
+  name = "web-${local.name}-np-${local.location}"
+  resource_group_name = azurerm_resource_group.react-rg.name
+  location = local.location
+  tags = local.common_tags
+}
 
 
 # # Generate a random integer to create a globally unique name
