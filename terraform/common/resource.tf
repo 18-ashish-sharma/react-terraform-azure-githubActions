@@ -41,6 +41,14 @@
 #   app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
 # }
 
+resource "random_string" "unique" {
+  length  = 4
+  lower   = true
+  number  = true
+  upper   = false
+  special = false
+}
+
 resource "azurerm_resource_group" "linux" {
   name     = "rg-linux-${random_string.unique.result}"
   location = "centralus"
@@ -59,6 +67,7 @@ resource "azurerm_app_service_plan" "linux" {
     capacity = 1 # Must be at least 1 when reserved is true
   }
 }
+
 
 resource "azurerm_app_service" "linux" {
   name                = "app-linux-${random_string.unique.result}"
