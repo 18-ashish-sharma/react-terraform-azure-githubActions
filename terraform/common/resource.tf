@@ -91,7 +91,7 @@ resource "azurerm_resource_group" "react-rg" {
 }
 
 resource "azurerm_storage_account" "react-storage-account" {
-  name                     = "react-storage"
+  name                     = "reactstorage"
   resource_group_name      = azurerm_resource_group.react-rg.name
   location                 = azurerm_resource_group.react-rg.location
   account_tier             = "Standard"
@@ -99,7 +99,7 @@ resource "azurerm_storage_account" "react-storage-account" {
 }
 
 resource "azurerm_storage_container" "react-blob-container" {
-  name                  = "react-blob"
+  name                  = "reactblob"
   storage_account_name  = azurerm_storage_account.react-storage-account.name
   container_access_type = "private"
 }
