@@ -1,17 +1,13 @@
-resource "azurerm_resource_group" "react-rg" {
-  name = "react-${local.name}-np-${local.location}"
-  location = local.location
-}
+# resource "azurerm_resource_group" "react-rg" {
+#   name = "react-${local.name}-np-${local.location}"
+#   location = local.location
+# }
 
-resource "azurerm_static_site" "static-app" {
-  name = "web-${local.name}-np-${local.location}"
-  resource_group_name = azurerm_resource_group.react-rg.name
-  location = local.location
-  source = local.source
-  branch = "main"
-  app-location = "/"
-  output-location = "build" 
-}
+# resource "azurerm_static_site" "static-app" {
+#   name = "web-${local.name}-np-${local.location}"
+#   resource_group_name = azurerm_resource_group.react-rg.name
+#   location = local.location
+# }
 
 
 # # Generate a random integer to create a globally unique name
@@ -88,3 +84,24 @@ resource "azurerm_static_site" "static-app" {
 #     linux_fx_version = "NODE|16-lts"
 #   }
 # }
+
+resource "azurerm_resource_group" "react-rg" {
+  name = "react-${local.name}-np-${local.location}"
+  location = local.location
+}
+
+resource "azurerm_storage_account" "react-storage-account" {
+  name                     = "react-storage"
+  resource_group_name      = azurerm_resource_group.react-rg.name
+  location                 = azurerm_resource_group.react-rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "react-blob-container" {
+  name                  = "react-blob"
+  storage_account_name  = azurerm_storage_account.react-storage-account.name
+  container_access_type = "private"
+}
+
+
