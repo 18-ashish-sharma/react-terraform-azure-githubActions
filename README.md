@@ -59,7 +59,7 @@ Run these commands:
 
 az login
 
- az ad sp create-for-rbac --name "sp-hello-azure-tf" --role Contributor --scopes /subscriptions/<subscriptionID>  --sdk-auth
+ az ad sp create-for-rbac --name "sp-hello-azure-tf" --role Contributor --scopes /subscriptions/{subscriptionID}  --sdk-auth
 
 
 
