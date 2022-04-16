@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "react-rg" {
 }
 
 resource "azurerm_storage_account" "react-storage-account" {
-  name                     = "reactstorage"
+  name                     = "reactstorage10"
   resource_group_name      = azurerm_resource_group.react-rg.name
   location                 = azurerm_resource_group.react-rg.location
   account_tier             = "Standard"
