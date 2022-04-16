@@ -53,6 +53,11 @@ Create a key named AZURE_STORAGE then paste the connection string that you previ
 ![image](https://user-images.githubusercontent.com/74248496/163662132-fa880a27-284c-4c20-a865-4edb399c968b.png)
 
 
+Add all these secrets:
+
+![image](https://user-images.githubusercontent.com/74248496/163662549-5aaea256-19ac-4da8-a8bd-0deddeeee783.png)
+
+
 After this github actions will run:
 
 ![image](https://user-images.githubusercontent.com/74248496/163662147-f09c62bb-6dfe-4d74-9d82-04b998a10cb4.png)
