@@ -55,6 +55,14 @@ Create a key named AZURE_STORAGE then paste the connection string that you previ
 
 Add all these secrets:
 
+Run these commands:
+
+az login
+
+ az ad sp create-for-rbac --name "sp-hello-azure-tf" --role Contributor --scopes /subscriptions/<subscriptionID>  --sdk-auth
+
+
+
 ![image](https://user-images.githubusercontent.com/74248496/163662549-5aaea256-19ac-4da8-a8bd-0deddeeee783.png)
 
 
