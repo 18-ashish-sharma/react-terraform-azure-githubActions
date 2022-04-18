@@ -44,8 +44,23 @@ on:
         branches: [ main ]
 
 jobs:
-  build:
-    name: Build
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Use Node.js ${{ env.NODE_VERSION }}
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ env.NODE_VERSION }}
+  #   - name: npm install & build
+  #     run: |
+  #       # Build and test the project, then
+  #       # deploy to Azure Web App.
+  #       npm install
+  #       npm run build
+  deploy:
+    # needs: [Build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -59,11 +74,6 @@ jobs:
         # deploy to Azure Web App.
         npm install
         npm run build
-  deploy:
-    needs: [Build]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
     - uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
