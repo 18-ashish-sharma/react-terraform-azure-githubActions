@@ -16,7 +16,6 @@ env:
 jobs:
   build-and-deploy:
     name: Build and Deploy
-    needs: [ TerraformApply ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
