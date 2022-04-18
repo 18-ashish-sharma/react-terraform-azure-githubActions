@@ -73,7 +73,7 @@ resource "azurerm_cdn_endpoint" "react-cdn-endpoint" {
 }
 
 resource "azurerm_dns_zone" "dns" {
-  name                = "${var.env}np.ody.edstem.com"
+  name                = "${var.env}.np.ody.edstem.com"
   resource_group_name = azurerm_resource_group.react-rg.name
 }
 
