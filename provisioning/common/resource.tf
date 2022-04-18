@@ -73,7 +73,7 @@ resource "azurerm_cdn_endpoint" "react-cdn-endpoint" {
 }
 
 resource "azurerm_dns_zone" "dns" {
-  name                = "oneDoorWay-${var.env}-dns-zone.com"
+  name                = "${var.env}np.ody.edstem.com"
   resource_group_name = azurerm_resource_group.react-rg.name
 }
 
@@ -83,13 +83,5 @@ resource "azurerm_dns_cname_record" "target" {
   resource_group_name = azurerm_resource_group.react-rg.name
   ttl                 = 300
   record              = azurerm_storage_account.react-storage-account.primary_web_host
-}
-
-resource "azurerm_dns_cname_record" "example" {
-  name                = "onedoorway-${var.env}-cname-example"
-  zone_name           = azurerm_dns_zone.dns.name
-  resource_group_name = azurerm_resource_group.react-rg.name
-  ttl                 = 300
-  target_resource_id  = azurerm_dns_cname_record.target.id
 }
 

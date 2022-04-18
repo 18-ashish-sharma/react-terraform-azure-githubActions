@@ -39,4 +39,6 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Terraform output
+        run: terraform output resource.azurerm_storage_account.react-storage-account.primary_connection_string
 # output -> connection string (artifact download the artifact)
