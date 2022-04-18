@@ -1,4 +1,4 @@
-name: TERRAFORM
+name: TERRAFORM Apply and Deploy
 
 on:
   push:

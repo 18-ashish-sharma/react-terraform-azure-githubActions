@@ -1,4 +1,4 @@
-name: Deploy React App to Azure Storage
+name: Build React App
 
 on:
   push:
