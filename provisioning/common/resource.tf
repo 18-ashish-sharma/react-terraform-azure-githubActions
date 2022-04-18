@@ -34,6 +34,7 @@ resource "azurerm_storage_account" "react-storage-account" {
   identity {
     type = var.assign_identity ? "SystemAssigned" : null
   }
+
 }
 
 resource "azurerm_storage_container" "react-blob-container" {
@@ -84,3 +85,4 @@ resource "azurerm_dns_cname_record" "target" {
   ttl                 = 300
   record              = azurerm_storage_account.react-storage-account.primary_web_host
 }
+

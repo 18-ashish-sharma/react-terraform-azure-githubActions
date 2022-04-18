@@ -1,38 +1,73 @@
-name: Deploy React App to Azure Storage
+# name: Deploy React App to Azure Storage
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - '*'
+# defaults:
+#   run:
+#     working-directory: ./
+# env:
+#   NODE_VERSION: '16'                # set this to the node version to use
+#   CI: false
+# jobs:
+#   build-and-deploy:
+#     name: Build and Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Use Node.js ${{ env.NODE_VERSION }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: ${{ env.NODE_VERSION }}
+#     - name: npm install & build
+#       run: |
+#         # Build and test the project, then
+#         # deploy to Azure Web App.
+#         npm install
+#         npm run build
+#     - name: 'Deploy react app to Azure blob storage'
+#       uses: bacongobbler/azure-blob-storage-upload@main
+#       with:
+#           source_dir: './build'
+#           container_name: '$web'
+#           connection_string: ${{ secrets.AZURE_STORAGE }} 
+#           sync: 'true'
+
+name: Blob storage website CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - '*'
-defaults:
-  run:
-    working-directory: ./
-env:
-  NODE_VERSION: '16'                # set this to the node version to use
-  CI: false
+    push:
+        branches: [ main ]
+
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v1
+    - uses: azure/login@v1
       with:
-        node-version: ${{ env.NODE_VERSION }}
-    - name: npm install & build
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+        enable-AzPSSession: true
+
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+            az storage blob upload-batch --account-name odwdevstorage --auth-mode key -d '$web' -s .
+    # - name: Purge CDN endpoint
+    #   uses: azure/CLI@v1
+    #   with:
+    #     inlineScript: |
+    #        az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
+
+  # Azure logout
+    - name: logout
       run: |
-        # Build and test the project, then
-        # deploy to Azure Web App.
-        npm install
-        npm run build
-    - name: 'Deploy react app to Azure blob storage'
-      uses: bacongobbler/azure-blob-storage-upload@main
-      with:
-          source_dir: './build'
-          container_name: '$web'
-          connection_string: ${{ secrets.AZURE_STORAGE }} 
-          sync: 'true'
+            az logout
+      if: always()
