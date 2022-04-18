@@ -86,7 +86,7 @@ variable "enable_cdn_profile" {
 
 variable "cdn_profile_name" {
   description = "Specifies the name of the CDN Profile"
-  default     = "test"
+  default     = "odw-${var.env}"
 }
 
 variable "cdn_sku_profile" {
