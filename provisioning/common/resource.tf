@@ -1,9 +1,12 @@
 resource "azurerm_resource_group" "react-rg" {
+  count = 1
   name     = "${local.resource_group}"
   location = local.location
 }
 
 resource "azurerm_storage_account" "react-storage-account" {
+  
+  count = 1
   name                      = "odw${var.env}storage"
   resource_group_name       = azurerm_resource_group.react-rg.name
   location                  = azurerm_resource_group.react-rg.location
