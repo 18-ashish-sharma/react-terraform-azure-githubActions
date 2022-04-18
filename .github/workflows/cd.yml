@@ -39,5 +39,6 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
-      - id: Terraform output
+      - name: Terraform output
+        id: terraform_output
         run: terraform output resource.azurerm_storage_account.react-storage-account.primary_connection_string
