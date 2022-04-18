@@ -4,11 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - 'terraform/**'
+    - 'provisioning/**'
   pull_request:
     branches: [ main ]
     paths:
-    - 'terraform/**'
+    - 'provisioning/**'
 
   workflow_dispatch:
 jobs:
@@ -23,7 +23,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./terraform/nonprod/dev
+        working-directory: ./provisioning/nonprod/dev
     steps:
       - uses: actions/checkout@v2
 
