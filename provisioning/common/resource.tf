@@ -45,6 +45,8 @@ resource "azurerm_storage_container" "react-blob-container" {
 #---------------------------------------------------------
 # Add CDN profile and endpoint to static website
 #----------------------------------------------------------
+
+
 resource "azurerm_cdn_profile" "react-cdn-profile" {
   count               = var.enable_static_website && var.enable_cdn_profile ? 1 : 0
   name                = var.cdn_profile_name
