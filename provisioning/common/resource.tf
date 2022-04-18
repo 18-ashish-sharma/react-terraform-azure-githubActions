@@ -84,4 +84,3 @@ resource "azurerm_dns_cname_record" "target" {
   ttl                 = 300
   record              = azurerm_storage_account.react-storage-account.primary_web_host
 }
-
